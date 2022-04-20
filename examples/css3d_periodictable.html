@@ -46,7 +46,7 @@
 					top: 40px;
 					left: 0px;
 					right: 0px;
-					font-size: 60px;
+					font-size: 26px;
 					font-weight: bold;
 					color: rgba(255,255,255,0.75);
 					text-shadow: 0 0 10px rgba(0,255,255,0.95);
@@ -57,7 +57,7 @@
 					bottom: 15px;
 					left: 0px;
 					right: 0px;
-					font-size: 12px;
+					font-size: 26px;
 					color: rgba(127,255,255,0.75);
 				}
 
@@ -110,6 +110,51 @@
 			import { TWEEN } from './jsm/libs/tween.module.min.js';
 			import { TrackballControls } from './jsm/controls/TrackballControls.js';
 			import { CSS3DRenderer, CSS3DObject } from './jsm/renderers/CSS3DRenderer.js';
+
+		  const names = [
+							"Harry","Ross",
+							"Bruce","Cook",
+							"Carolyn","Morgan",
+							"Albert","Walker",
+							"Randy","Reed",
+							"Larry","Barnes",
+							"Lois","Wilson",
+							"Jesse","Campbell",
+							"Ernest","Rogers",
+							"Theresa","Patterson",
+							"Henry","Simmons",
+							"Michelle","Perry",
+							"Frank","Butler",
+							"Shirley", "Brooks",
+							"Rachel","Edwards",
+							"Christopher","Perez",
+							"Thomas","Baker",
+							"Sara","Moore",
+							"Chris","Bailey",
+							"Roger","Johnson",
+							"Marilyn","Thompson",
+							"Anthony","Evans",
+							"Julie","Hall",
+							"Paula","Phillips",
+							"Annie","Hernandez",
+							"Dorothy","Murphy",
+							"Alice","Howard", 
+							"Ruth","Jackson",
+							"Debra","Allen",
+							"Gerald","Harris",
+							"Raymond","Carter",
+							"Jacqueline","Torres",
+							"Joseph","Nelson",
+							"Carlos","Sanchez",
+							"Ralph","Clark",
+							"Jean","Alexander",
+							"Stephen","Roberts",
+							"Eric","Long",
+							"Amanda","Scott",
+							"Teresa","Diaz",
+							"Wanda","Thomas"
+						];
+			const gender = ["Male","Female"];
 
 			const table = [
 				'H', 'Hydrogen', '1.00794', 1, 1,
@@ -232,6 +277,20 @@
 				'Og', 'Oganesson', '(294)', 18, 7
 			];
 
+			names.random = function() {
+				return names[Math.floor(Math.random() * names.length)];
+			};
+			gender.random = function() {
+				return gender[Math.floor(Math.random() * gender.length)];
+			};
+
+			for ( let i = 0; i < table.length; i += 5 ) {
+				table[i] = names.random();
+				table[i+1] = Math.floor(Math.random() * (50 - 18) + 18);
+				table[i+2] = gender.random();
+				
+			}
+
 			let camera, scene, renderer;
 			let controls;
 
@@ -269,6 +328,11 @@
 					const details = document.createElement( 'div' );
 					details.className = 'details';
 					details.innerHTML = table[ i + 1 ] + '<br>' + table[ i + 2 ];
+					if (table[ i + 2 ] === "Male"){
+						element.style.backgroundColor = 'rgba(0,127,127,0.8)';
+					} else {
+						element.style.backgroundColor = 'rgba(255,192,203,0.8)';
+					}
 					element.appendChild( details );
 
 					const objectCSS = new CSS3DObject( element );
